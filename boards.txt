@@ -6,22 +6,17 @@
 # License as published by the Free Software Foundation; either
 # version 2.1 of the License, or (at your option) any later version.
 
-am335x.name=100ask_am335x
-
-
-am335x.upload.tool=copy
-am335x.upload.protocol=copy
-am335x.upload.verbose=
-am335x.upload.speed=115200
-
-am335x.build.mcu=100ask_am335x
-am335x.build.f_cpu=
-am335x.build.board=RASPI
-am335x.build.core=100ask_am335x
-am335x.build.variant=100ask_am335x
-am335x.build.debug_flags=
-am335x.build.optimization_flags=-O3
-
-
-am335x.upload.maximum_size=10485760
-am335x.upload.maximum_data_size=10485760
+rk3288.name=firefly-rk3288
+rk3288.upload.tool=copy
+rk3288.upload.protocol=copy
+rk3288.upload.verbose=
+rk3288.upload.speed=115200
+rk3288.build.mcu=firefly-rk3288
+rk3288.build.f_cpu=
+rk3288.build.board=RASPI
+rk3288.build.core=firefly-rk3288
+rk3288.build.variant=firefly-rk3288
+rk3288.build.debug_flags=
+rk3288.build.optimization_flags=-O3
+rk3288.upload.maximum_size=10485760
+rk3288.upload.maximum_data_size=10485760
