@@ -1,1 +1,1 @@
-# arduino-rk3288
+# arduio-100ask-boards
