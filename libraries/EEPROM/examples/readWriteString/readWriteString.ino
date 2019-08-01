@@ -19,12 +19,27 @@
 
 int main(int argc, char **argv)
 {
-    string txString = "www.100ask.org";
+    int ret;
+    string txString = "www.100ask.net";
     string rxString;
 
-    EEPROM eeprom(1);
+    EEPROM eeprom(I2C_A);
 
-    eeprom.writeEEPROM(0, txString.size(), txString);
-    eeprom.readEEPROM(0, txString.size(), &rxString);
+    ret = eeprom.writeEEPROM(0, txString.size(), txString);
+    if (ret < 0)
+    {
+        cout << "writeEEPROM error" << endl;
+        return -1;
+    }
+    
+   ret =  eeprom.readEEPROM(0, txString.size(), rxString);
+    if (ret < 0)
+    {
+        cout << "readEEPROM error" << endl;
+        return -1;
+    }
+    
     cout << "rxString: " << rxString << endl;
+    
+    return 0;
 }

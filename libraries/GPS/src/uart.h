@@ -6,6 +6,8 @@
 #define UART1_PATH  "/dev/ttyS1"
 #define UART2_PATH  "/dev/ttyS3"
 
+#define UART_A  1
+#define UART_B  2
 
 class UART {
     protected:

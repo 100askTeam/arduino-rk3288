@@ -37,13 +37,10 @@ float DS18B20::readTemperature(void)
     struct ds18b20_value_msg msg;
     
     if(ioctl(this->m_iFile, DS18B20_IOCGVALUE, &msg) < 0) 
-	{
-		//perror("DS18B20: DS18B20_IOCGVALUE Failed\n");
-		;
-	}
-	else
-		temperature = (((msg.value[1] & 0x07)<<4) + ((msg.value[0] & 0xF0)>>4)) + (msg.value[0] & 0x0F)*0.0625;
-
+        perror("DS18B20: DS18B20_IOCGVALUE Failed\n");
+    
+    temperature = (((msg.value[1] & 0x07)<<4) + ((msg.value[0] & 0xF0)>>4)) + (msg.value[0] & 0x0F)*0.0625;
+    
     if (msg.value[1] & 0xF8)
         return -(temperature);
     else
@@ -54,11 +51,8 @@ int DS18B20::readFamilyCode(void)
 {
     struct ds18b20_info_msg msg;
     
-    if(ioctl(this->m_iFile, DS18B20_IOCGINFO, &msg) < 0)
-	{
-        //perror("DS18B20: DS18B20_IOCGINFO Failed\n");
-		;
-	}
+    if(ioctl(this->m_iFile, DS18B20_IOCGINFO, &msg) < 0) 
+        perror("DS18B20: DS18B20_IOCGINFO Failed\n");
     
     return msg.family_code;
 }

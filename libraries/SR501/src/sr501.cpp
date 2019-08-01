@@ -13,7 +13,7 @@ SR501::SR501()
 
 SR501::SR501(int pin)
 {
-	setPin(pin);
+    setPin(pin);
     
     exportGPIO();
     usleep(25000);

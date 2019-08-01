@@ -5,13 +5,13 @@
 * Author:      hceng
 * Email:       huangcheng.job@foxmail.com
 * Website:     http://www.100ask.net/
-* Function:    turn Off LED1. 
+* Function:    turn Off LED2. 
 * Notes:       none.
 * Description: 
 * 1. 实例化LED；
 * 2. 实例KEYBOARD；
 * 3. 调用readKey()读取按键状态；
-* 4. 如果KEY1按下，或者长按，关闭LED1;
+* 4. 如果KEY_A按下，或者长按，关闭LED2;
 */
 #include <Arduino.h>
 #include <led.h>
@@ -19,18 +19,23 @@
 
 int main(int argc, char **argv)
 {
-    LED led(LED1); 
-
+    int ret;
+    LED led(LED2); 
     KEYBOARD keyboard;
     
     while(1)
     {
-        keyboard.readKey();
+        ret = keyboard.readKey();
         
-        //如果KEY1按下，或者长按，关闭LED4
-        if((keyboard.code == KEY_LEFT) && (keyboard.value == 1 || keyboard.value == 2)) 
-            led.off();
-        else
-            led.on();
+        if (ret == 0)
+        {
+            //如果KEY_A按下，或者长按，关闭LED2
+            if((keyboard.getCode() == KEY_A) && (keyboard.getValue() == 1 || keyboard.getValue() == 2)) 
+                led.off();
+            else
+                led.on();   
+        }
     }
+    
+    return 0;
 }

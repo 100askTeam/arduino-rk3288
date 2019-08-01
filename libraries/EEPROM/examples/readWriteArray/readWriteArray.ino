@@ -20,19 +20,32 @@
 
 int main(int argc, char **argv)
 {
-    int i;
+    int i, ret;
     int txArray[5] = {10, 20, 30, 254, 255};
     int rxArray[5];
     int txLen = sizeof(txArray)/sizeof(txArray[0]);
     int rxLen = sizeof(rxArray)/sizeof(rxArray[0]);
     
-    EEPROM eeprom(1);
+    EEPROM eeprom(I2C_A);
     
-    eeprom.writeEEPROM(0, txLen, txArray);
-    eeprom.readEEPROM(0, rxLen, rxArray);
+    ret = eeprom.writeEEPROM(0, txLen, txArray);
+    if (ret < 0)
+    {
+        cout << "writeEEPROM error" << endl;
+        return -1;
+    }
+        
+    ret = eeprom.readEEPROM(0, rxLen, rxArray);
+    if (ret < 0)
+    {
+        cout << "readEEPROM error" << endl;
+        return -1;
+    }
     
     cout << "rxArray: "; 
     for (i=0; i<rxLen; i++)
         cout << rxArray[i] << " " ; 
     cout << endl; 
+    
+    return 0;
 }

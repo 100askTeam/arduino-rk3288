@@ -3,8 +3,8 @@
 
 #include "gpio.h"
 
-#define LED1 (8*32+0*8+2 - 8)
-//#define LED2 (8*32+0*8+1 - 8)
+//#define LED1 (8*32+0*8+1 - 8)
+#define LED2 (8*32+0*8+2 - 8)
 
 class LED : public GPIO {
     public:

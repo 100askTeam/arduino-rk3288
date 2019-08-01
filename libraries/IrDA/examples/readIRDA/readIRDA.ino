@@ -44,13 +44,17 @@
 
 int main(int argc, char **argv)
 {
+    int ret;
     IRDA irda(GPIO0);
     
     while(1)
     {
-        irda.readKey();
+        ret = irda.readKey();
         
-        cout << "Code:" << irda.code << " Value:" << irda.value << endl;
+        if(ret == 0)
+            cout << "Code:" << irda.getCode() << " Value:" << irda.getValue() << endl;
     }
+    
+    return 0;
 }
 

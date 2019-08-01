@@ -6,9 +6,9 @@
 * Email:       huangcheng.job@foxmail.com
 * Website:     http://www.100ask.net/
 * Function:    Timing 1 second flashing LED.
-* Notes:       Only support LED1.
+* Notes:       Only support LED2.
 * Description: 
-* 1. 实例化LED，需指定LED(目前只支持LED1)；
+* 1. 实例化LED，需指定LED(目前只支持LED2)；
 * 2. 在循环里，每间隔1s，调用on()/off()，控制LED亮灭；  
 */
 #include <Arduino.h>
@@ -16,16 +16,18 @@
 
 int main(int argc, char **argv)
 {
-    LED led1(LED1);
+    LED led(LED2);
 
     while(1)
     {
-        led1.on();  
+        led.on();  
         sleep(1);
             
-        led1.off(); 
+        led.off(); 
         sleep(1);
     }
+    
+    return 0;
 }
     
 

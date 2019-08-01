@@ -5,13 +5,13 @@
 * Author:      hceng
 * Email:       huangcheng.job@foxmail.com
 * Website:     http://www.100ask.net/
-* Function:    turn On LED1. 
+* Function:    turn On LED2. 
 * Notes:       none.
 * Description: 
 * 1. 实例化LED,并先关闭；
 * 2. 实例IRDA；
 * 3. 调用readKey()读取按键状态；
-* 4. 如果KEY_1按下，或者长按，打开LED1;
+* 4. 如果KEY_1按下，或者长按，打开LED2;
 */
 #include <Arduino.h>
 #include <led.h>
@@ -20,19 +20,24 @@
 
 int main(int argc, char **argv)
 {
-    LED led(LED1); 
+    int ret;
+    LED led(LED2); 
     led.off();
-
     IRDA irda(GPIO0);
     
     while(1)
     {
-        irda.readKey();
+        ret = irda.readKey();
         
-        //如果KEY_1按下，或者长按，打开LED4
-        if((irda.code == KEY_1) && (irda.value == 1 || irda.value == 2)) 
-            led.on();
-        else
-            led.off();
+        if(ret == 0)
+        {
+            //如果KEY_1按下，或者长按，打开LED2
+            if((irda.getCode() == KEY_1) && (irda.getValue() == 1 || irda.getValue() == 2)) 
+                led.on();
+            else
+                led.off();          
+        }
     }
+    
+    return 0;
 }

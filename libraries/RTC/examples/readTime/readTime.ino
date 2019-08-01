@@ -17,11 +17,13 @@
 
 int main(int argc, char **argv)
 {
-    RTC rtc(1);
+    RTC rtc(I2C_RTC);
     
     while(1)
     {
         rtc.timePrintf();
         sleep(1);
     } 
+    
+    return 0;
 }
